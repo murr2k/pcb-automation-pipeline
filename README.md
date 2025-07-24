@@ -367,6 +367,7 @@ export PCB_LOG_LEVEL="INFO"
 - **[Pipeline Guide](docs/PIPELINE_GUIDE.md)** - Usage and workflow  
 - **[API Reference](docs/API.md)** - Complete API documentation
 - **[Docker Guide](docs/DOCKER.md)** - Docker integration and containerization
+- **[Fly.io Deployment](docs/FLY_IO.md)** - Cloud deployment guide
 
 ### 🔧 Configuration & Integration
 - **[API Keys Guide](docs/API_KEYS.md)** - External services and API registration

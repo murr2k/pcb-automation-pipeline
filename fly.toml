@@ -1,0 +1,89 @@
+# Fly.io configuration for PCB Automation Pipeline
+app = "pcb-automation-pipeline"
+primary_region = "dfw"  # Dallas - close to MacroFab!
+kill_signal = "SIGINT"
+kill_timeout = 5
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  # Pipeline configuration
+  PCB_USE_DOCKER = "true"
+  PCB_OUTPUT_DIR = "/data/output"
+  PCB_LOG_LEVEL = "INFO"
+  PORT = "8000"
+  
+  # Python settings
+  PYTHONUNBUFFERED = "1"
+  WEB_CONCURRENCY = "2"
+
+[experimental]
+  auto_rollback = true
+
+# Persistent storage for generated files
+[mounts]
+  source = "pcb_data"
+  destination = "/data"
+
+# Main web service
+[[services]]
+  http_checks = []
+  internal_port = 8000
+  protocol = "tcp"
+  script_checks = []
+  
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "10s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
+
+  [[services.http_checks]]
+    interval = "30s"
+    grace_period = "10s"
+    method = "get"
+    path = "/health"
+    protocol = "http"
+    restart_limit = 0
+    timeout = "10s"
+    tls_skip_verify = false
+
+# Separate process for background jobs (optional)
+[processes]
+  web = "python -m pcb_pipeline.web_api"
+  # worker = "python -m pcb_pipeline.worker"  # Uncomment if you add job queue
+
+# Auto-scaling configuration
+[[services.autoscaling]]
+  min_machines = 1
+  max_machines = 5
+  
+  # Scale up when CPU > 80% or memory > 80%
+  [[services.autoscaling.metrics]]
+    source = "cpu"
+    threshold = 80
+    
+  [[services.autoscaling.metrics]]
+    source = "memory"
+    threshold = 80
+
+# Machine configuration
+[vm]
+  cpu_type = "shared"
+  cpus = 2
+  memory_mb = 2048  # 2GB for KiCad operations

@@ -1,0 +1,29 @@
+name: Fly.io Health Check
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Every 30 minutes
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check API Health
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://pcb-automation-pipeline.fly.dev/health)
+          if [ $response -eq 200 ]; then
+            echo "✅ API is healthy"
+          else
+            echo "❌ API is down (HTTP $response)"
+            exit 1
+          fi
+          
+      - name: Check API Docs
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://pcb-automation-pipeline.fly.dev/docs)
+          if [ $response -eq 200 ]; then
+            echo "✅ API docs are accessible"
+          else
+            echo "⚠️ API docs returned HTTP $response"
+          fi
