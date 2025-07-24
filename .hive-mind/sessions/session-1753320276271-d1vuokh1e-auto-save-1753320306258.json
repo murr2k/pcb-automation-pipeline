@@ -1,0 +1,81 @@
+{
+  "sessionId": "session-1753320276271-d1vuokh1e",
+  "checkpointId": "checkpoint-1753320306258-5jjwearbn",
+  "checkpointName": "auto-save-1753320306258",
+  "timestamp": "2025-07-24T01:25:06.258Z",
+  "data": {
+    "timestamp": "2025-07-24T01:25:06.258Z",
+    "changeCount": 5,
+    "changesByType": {
+      "swarm_created": [
+        {
+          "type": "swarm_created",
+          "data": {
+            "swarmId": "swarm-1753320276256-vzyshazj6",
+            "swarmName": "hive-1753320276185",
+            "objective": "The goal is to automate the entire PCB design process, from schematic generation to ordering the finished boards. Develop a full pipeline using KiCad, Python, and JLCPCB's API to make this work.",
+            "workerCount": 8
+          },
+          "timestamp": "2025-07-24T01:24:36.272Z"
+        }
+      ],
+      "agent_activity": [
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753320276256-vzyshazj6-0",
+            "activity": "spawned",
+            "data": {
+              "type": "researcher",
+              "name": "Researcher Worker 1"
+            }
+          },
+          "timestamp": "2025-07-24T01:24:36.300Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753320276256-vzyshazj6-1",
+            "activity": "spawned",
+            "data": {
+              "type": "coder",
+              "name": "Coder Worker 2"
+            }
+          },
+          "timestamp": "2025-07-24T01:24:36.313Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753320276256-vzyshazj6-2",
+            "activity": "spawned",
+            "data": {
+              "type": "analyst",
+              "name": "Analyst Worker 3"
+            }
+          },
+          "timestamp": "2025-07-24T01:24:36.327Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753320276256-vzyshazj6-3",
+            "activity": "spawned",
+            "data": {
+              "type": "tester",
+              "name": "Tester Worker 4"
+            }
+          },
+          "timestamp": "2025-07-24T01:24:36.339Z"
+        }
+      ]
+    },
+    "statistics": {
+      "tasksProcessed": 0,
+      "tasksCompleted": 0,
+      "memoryUpdates": 0,
+      "agentActivities": 4,
+      "consensusDecisions": 0
+    }
+  }
+}

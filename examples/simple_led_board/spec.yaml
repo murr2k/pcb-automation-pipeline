@@ -1,0 +1,89 @@
+name: Simple LED Board
+description: A simple PCB with an LED, resistor, and power connector
+version: 1.0
+
+# Board specifications
+board:
+  size: [50, 30]  # mm (width, height)
+  layers: 2
+  thickness: 1.6  # mm
+
+# Components list
+components:
+  - type: connector
+    reference: J1
+    value: "PWR_2PIN"
+    footprint: "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+    properties:
+      description: "Power input connector"
+      pins: ["VCC", "GND"]
+  
+  - type: resistor
+    reference: R1
+    value: "330"
+    package: "0603"
+    properties:
+      tolerance: "5%"
+      power: "0.1W"
+  
+  - type: led
+    reference: D1
+    value: "RED"
+    package: "0603"
+    properties:
+      color: "red"
+      voltage_forward: "2.0V"
+      current: "20mA"
+  
+  - type: capacitor
+    reference: C1
+    value: "100nF"
+    package: "0603"
+    properties:
+      voltage: "16V"
+      dielectric: "X7R"
+
+# Connections (nets)
+connections:
+  - net: "VCC"
+    connect:
+      - "J1.1"  # Power connector pin 1
+      - "R1.1"  # Resistor pin 1
+      - "C1.1"  # Capacitor pin 1
+  
+  - net: "LED_ANODE"
+    connect:
+      - "R1.2"  # Resistor pin 2
+      - "D1.1"  # LED anode
+  
+  - net: "GND"
+    connect:
+      - "J1.2"  # Power connector pin 2
+      - "D1.2"  # LED cathode
+      - "C1.2"  # Capacitor pin 2
+
+# Power nets
+power:
+  vcc:
+    - "J1.1"
+    - "R1.1"
+    - "C1.1"
+  gnd:
+    - "J1.2"
+    - "D1.2"
+    - "C1.2"
+
+# Design rules
+design_rules:
+  trace_width: 0.25  # mm
+  clearance: 0.2  # mm
+  via_size: 0.8  # mm
+  via_drill: 0.4  # mm
+
+# Manufacturing options
+manufacturing:
+  vendor: "jlcpcb"
+  quantity: 10
+  surface_finish: "HASL"
+  solder_mask_color: "green"
+  silkscreen_color: "white"

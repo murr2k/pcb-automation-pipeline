@@ -1,0 +1,58 @@
+# PCB Pipeline Configuration
+
+# General settings
+project_name: PCB_Automation_Pipeline
+output_dir: output
+temp_dir: /tmp/pcb_pipeline
+
+# KiCad settings
+kicad_path: /usr/local/bin/kicad
+kicad_version: "8.0"
+use_docker: true
+docker_image: kicad/kicad:latest
+
+# Design settings
+default_trace_width: 0.25  # mm
+default_via_size: 0.8      # mm
+default_via_drill: 0.4     # mm
+clearance: 0.2             # mm
+board_thickness: 1.6       # mm
+copper_layers: 2
+
+# Layout settings
+auto_place: true
+auto_route: false
+placement_strategy: grid   # grid, cluster, optimize
+placement_grid: 5.0        # mm
+routing_grid: 0.25         # mm
+
+# Component library
+library_path: templates/component_libraries
+use_jlc_libraries: true
+preferred_parts_only: false
+
+# Manufacturing settings
+manufacturer: jlcpcb
+surface_finish: HASL
+solder_mask_color: green
+silkscreen_color: white
+min_hole_size: 0.3         # mm
+
+# JLCPCB settings
+# Note: Add your API credentials here or use environment variables
+# jlcpcb_api_key: YOUR_API_KEY
+# jlcpcb_api_secret: YOUR_API_SECRET
+jlcpcb_api_url: https://api.jlcpcb.com/v1
+assembly_service: false
+
+# Validation settings
+strict_drc: true
+check_courtyard: true
+check_unconnected: true
+min_track_width: 0.15      # mm
+min_via_diameter: 0.45     # mm
+min_hole_to_hole: 0.5      # mm
+
+# Logging
+log_level: INFO
+log_file: pcb_pipeline.log
