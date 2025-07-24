@@ -1,0 +1,39 @@
+# Ultra-minimal Dockerfile just for health check
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install only FastAPI and uvicorn
+RUN pip3 install --no-cache-dir fastapi uvicorn
+
+# Create a simple health check app
+RUN echo 'from fastapi import FastAPI\n\
+import os\n\
+\n\
+app = FastAPI()\n\
+\n\
+@app.get("/")\n\
+async def root():\n\
+    return {"message": "PCB Pipeline API", "status": "ready"}\n\
+\n\
+@app.get("/health")\n\
+async def health():\n\
+    return {"status": "healthy", "service": "pcb-pipeline"}\n\
+\n\
+@app.get("/api")\n\
+async def api():\n\
+    return {"version": "1.0.0", "endpoints": ["/health", "/api"]}\n\
+\n\
+if __name__ == "__main__":\n\
+    import uvicorn\n\
+    port = int(os.environ.get("PORT", 8000))\n\
+    uvicorn.run(app, host="0.0.0.0", port=port)\n' > health_app.py
+
+# Set environment
+ENV PORT=8000
+
+# Expose port
+EXPOSE 8000
+
+# Run the health check app
+CMD ["uvicorn", "health_app:app", "--host", "0.0.0.0", "--port", "8000"]

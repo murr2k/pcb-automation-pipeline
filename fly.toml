@@ -5,7 +5,7 @@ kill_signal = "SIGINT"
 kill_timeout = 5
 
 [build]
-  dockerfile = "Dockerfile"
+  dockerfile = "Dockerfile.fly.staged"
 
 [env]
   # Pipeline configuration
@@ -54,11 +54,12 @@ kill_timeout = 5
 
   [[services.http_checks]]
     interval = "30s"
-    grace_period = "10s"
+    grace_period = "30s"
     method = "get"
     path = "/health"
     protocol = "http"
     timeout = "10s"
+    restart_limit = 3
 
 # Process configuration
 

@@ -1,0 +1,44 @@
+# Minimal Dockerfile focused on getting health checks working
+FROM python:3.11-slim
+
+# Install only essential system packages
+RUN apt-get update && apt-get install -y \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy and install Python requirements
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir fastapi uvicorn pyyaml requests
+
+# Copy only the essential application code
+COPY src/pcb_pipeline/__init__.py ./src/pcb_pipeline/
+COPY src/pcb_pipeline/web_api.py ./src/pcb_pipeline/
+COPY src/pcb_pipeline/config.py ./src/pcb_pipeline/
+COPY src/pcb_pipeline/pipeline.py ./src/pcb_pipeline/
+COPY src/pcb_pipeline/schematic_generator.py ./src/pcb_pipeline/
+COPY src/pcb_pipeline/pcb_layout.py ./src/pcb_pipeline/
+COPY src/pcb_pipeline/design_validator.py ./src/pcb_pipeline/
+COPY src/pcb_pipeline/jlcpcb_interface.py ./src/pcb_pipeline/
+COPY src/pcb_pipeline/component_library.py ./src/pcb_pipeline/
+COPY src/pcb_pipeline/fab_interface.py ./src/pcb_pipeline/
+COPY src/pcb_pipeline/macrofab_interface.py ./src/pcb_pipeline/
+
+# Copy static files
+COPY static/ ./static/
+
+# Create directories
+RUN mkdir -p /data/output
+
+# Set environment variables
+ENV PYTHONPATH=/app/src:$PYTHONPATH
+ENV PCB_USE_DOCKER=true
+ENV PORT=8000
+
+# Expose port
+EXPOSE 8000
+
+# Run the web API directly
+CMD ["python3", "-m", "uvicorn", "pcb_pipeline.web_api:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]

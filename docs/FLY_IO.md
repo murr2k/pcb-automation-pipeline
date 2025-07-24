@@ -2,6 +2,15 @@
 
 This guide covers deploying the PCB Automation Pipeline to Fly.io for global, scalable hosting.
 
+## 🌐 Live Deployment
+
+The PCB Pipeline API is **currently deployed** and accessible at:
+
+- 🌐 **Web Interface**: https://pcb-automation-pipeline.fly.dev/
+- 📚 **API Documentation**: https://pcb-automation-pipeline.fly.dev/docs
+- ✅ **Health Check**: https://pcb-automation-pipeline.fly.dev/health
+- 🏭 **Manufacturers**: https://pcb-automation-pipeline.fly.dev/manufacturers
+
 ## 🌍 Why Fly.io?
 
 - **Global Edge Deployment**: Deploy close to users and PCB manufacturers

@@ -6,6 +6,7 @@ Provides REST API endpoints for design submission, status tracking, and file dow
 import logging
 import asyncio
 import uuid
+import os
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 import tempfile

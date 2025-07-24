@@ -1,0 +1,81 @@
+# Simple PCB Pipeline API for testing
+FROM python:3.11-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Install only essential Python packages
+RUN pip3 install --no-cache-dir fastapi uvicorn pydantic pyyaml requests
+
+# Create a simple API that doesn't import the full pipeline
+RUN echo 'from fastapi import FastAPI\n\
+from fastapi.responses import HTMLResponse\n\
+import os\n\
+\n\
+app = FastAPI(\n\
+    title="PCB Automation Pipeline API",\n\
+    description="REST API for automated PCB design and manufacturing",\n\
+    version="1.0.0"\n\
+)\n\
+\n\
+@app.get("/", response_class=HTMLResponse)\n\
+async def home():\n\
+    return """\n\
+    <html>\n\
+    <body style="font-family: sans-serif; text-align: center; padding: 50px;">\n\
+        <h1>PCB Automation Pipeline API</h1>\n\
+        <p>REST API for automated PCB design and manufacturing</p>\n\
+        <p>Status: Deployment in progress - core functionality coming soon!</p>\n\
+        <div style="margin: 40px;">\n\
+            <a href="/health" style="display: inline-block; margin: 10px; padding: 10px 20px; background: #2ecc71; color: white; text-decoration: none; border-radius: 5px;">Health Check</a>\n\
+            <a href="/docs" style="display: inline-block; margin: 10px; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px;">API Documentation</a>\n\
+        </div>\n\
+    </body>\n\
+    </html>\n\
+    """\n\
+\n\
+@app.get("/health")\n\
+async def health_check():\n\
+    return {\n\
+        "status": "healthy",\n\
+        "service": "pcb-pipeline",\n\
+        "version": "1.0.0",\n\
+        "deployment": "fly.io"\n\
+    }\n\
+\n\
+@app.get("/api")\n\
+async def api_info():\n\
+    return {\n\
+        "name": "PCB Automation Pipeline API",\n\
+        "version": "1.0.0",\n\
+        "status": "deployment_in_progress",\n\
+        "message": "Core pipeline functionality will be available soon",\n\
+        "endpoints": {\n\
+            "health": "/health",\n\
+            "docs": "/docs",\n\
+            "designs": "/designs (coming soon)",\n\
+            "quotes": "/quotes (coming soon)",\n\
+            "orders": "/orders (coming soon)"\n\
+        }\n\
+    }\n\
+\n\
+if __name__ == "__main__":\n\
+    import uvicorn\n\
+    port = int(os.environ.get("PORT", 8000))\n\
+    uvicorn.run(app, host="0.0.0.0", port=port)\n' > simple_api.py
+
+# Set environment
+ENV PORT=8000
+
+# Expose port
+EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:8000/health || exit 1
+
+# Run the simple API
+CMD ["uvicorn", "simple_api:app", "--host", "0.0.0.0", "--port", "8000"]

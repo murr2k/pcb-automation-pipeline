@@ -1,0 +1,36 @@
+# Minimal Dockerfile for Fly.io - pulls KiCad image directly from Docker Hub
+FROM kicad/kicad:nightly-full-trixie
+
+# Switch to root for installations
+USER root
+
+# Install Python packages needed for the pipeline
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy only the necessary files (minimal transfer)
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir --break-system-packages -r requirements.txt
+
+# Copy application code
+COPY src/ ./src/
+COPY static/ ./static/
+COPY examples/ ./examples/
+
+# Create output directory
+RUN mkdir -p /data/output && chmod 777 /data/output
+
+# Set environment variables
+ENV PYTHONPATH=/usr/lib/kicad/lib/python3/dist-packages:$PYTHONPATH
+ENV PCB_USE_DOCKER=true
+ENV PORT=8000
+
+# Run as kicad user (safer)
+USER kicad
+
+# Run the web API
+CMD ["python3", "-m", "pcb_pipeline.web_api"]

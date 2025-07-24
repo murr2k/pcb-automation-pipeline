@@ -6,6 +6,9 @@ A comprehensive, AI-powered PCB design automation system that transforms high-le
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
+🌐 **Live API**: https://pcb-automation-pipeline.fly.dev/  
+📚 **API Docs**: https://pcb-automation-pipeline.fly.dev/docs
+
 ## ✨ Key Features
 
 ### 🤖 **Intelligent Design Automation**
@@ -195,35 +198,65 @@ best_for_production = fab_manager.find_best_option(pcb, criteria='price', quanti
 
 ## 🌐 Web API Interface
 
-Launch the REST API server:
+The PCB Pipeline API is deployed and accessible at https://pcb-automation-pipeline.fly.dev/
+
+### Local Development
 
 ```bash
-# Start web server
+# Start web server locally
 python -m pcb_pipeline.web_api
 
 # Or with custom configuration
 uvicorn pcb_pipeline.web_api:create_app --host 0.0.0.0 --port 8000
 ```
 
+### Production API
+
+The production API is live on Fly.io with full documentation:
+
+**Live Endpoints:**
+- 🌐 **Web Interface**: https://pcb-automation-pipeline.fly.dev/
+- 📚 **API Documentation**: https://pcb-automation-pipeline.fly.dev/docs
+- ✅ **Health Check**: https://pcb-automation-pipeline.fly.dev/health
+- 🏭 **Manufacturers**: https://pcb-automation-pipeline.fly.dev/manufacturers
+
 **API Endpoints:**
 - `POST /designs/generate` - Generate PCB from specification
+- `POST /designs/validate` - Validate design specification
 - `GET /jobs/{job_id}` - Check generation status
 - `POST /quotes` - Get manufacturer quotes
 - `POST /orders` - Submit manufacturing order
 - `GET /manufacturers` - List available manufacturers
+- `GET /api` - API information and status
 
 **Example API Usage:**
 ```bash
-# Submit design for generation
-curl -X POST "http://localhost:8000/designs/generate" \
+# Check API health
+curl https://pcb-automation-pipeline.fly.dev/health
+
+# List supported manufacturers
+curl https://pcb-automation-pipeline.fly.dev/manufacturers | jq
+
+# Validate a design
+curl -X POST "https://pcb-automation-pipeline.fly.dev/designs/validate" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "LED Blinker",
+    "description": "Simple 555 timer LED blinker",
+    "board": {"size": "50x30mm", "layers": 2},
+    "components": [
+      {"name": "U1", "type": "555_timer", "package": "SOIC-8"},
+      {"name": "LED1", "type": "LED", "color": "red", "package": "0805"}
+    ],
+    "connections": [
+      {"from": "U1.3", "to": "LED1.anode"}
+    ]
+  }'
+
+# Submit design for generation (when fully implemented)
+curl -X POST "https://pcb-automation-pipeline.fly.dev/designs/generate" \
   -H "Content-Type: application/json" \
   -d @examples/simple_led_board/spec.json
-
-# Check job status
-curl "http://localhost:8000/jobs/{job_id}"
-
-# Download generated files
-curl "http://localhost:8000/jobs/{job_id}/files/gerbers.zip" -o gerbers.zip
 ```
 
 ## ⚙️ CI/CD Integration
