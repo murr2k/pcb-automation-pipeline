@@ -1,0 +1,90 @@
+name: Demo LED Controller
+description: Simple LED controller board for PCB Pipeline demonstration
+
+board:
+  size: [50, 40]  # mm
+  layers: 2
+  thickness: 1.6
+  copper_weight: 1  # oz
+
+components:
+  - type: microcontroller
+    reference: U1
+    value: ATmega328P
+    package: TQFP-32
+    lcsc_part: C14877
+    
+  - type: led
+    reference: D1
+    value: LED_RED
+    package: LED_0805
+    lcsc_part: C84256
+    
+  - type: led
+    reference: D2
+    value: LED_GREEN
+    package: LED_0805
+    lcsc_part: C72043
+    
+  - type: resistor
+    reference: R1
+    value: 330R
+    package: R_0805
+    lcsc_part: C17630
+    
+  - type: resistor
+    reference: R2
+    value: 330R
+    package: R_0805
+    lcsc_part: C17630
+    
+  - type: capacitor
+    reference: C1
+    value: 100nF
+    package: C_0805
+    lcsc_part: C49678
+    
+  - type: connector
+    reference: J1
+    value: USB_B_Mini
+    package: USB_Mini-B
+    lcsc_part: C46398
+
+connections:
+  - net: VCC
+    connect: ["U1.VCC", "U1.AVCC", "C1.1", "J1.VBUS"]
+    
+  - net: GND
+    connect: ["U1.GND", "C1.2", "J1.GND", "J1.SHIELD"]
+    
+  - net: LED1
+    connect: ["U1.PB0", "R1.1"]
+    
+  - net: LED1_K
+    connect: ["R1.2", "D1.K"]
+    
+  - net: LED2
+    connect: ["U1.PB1", "R2.1"]
+    
+  - net: LED2_K
+    connect: ["R2.2", "D2.K"]
+    
+  - net: LED_COMMON
+    connect: ["D1.A", "D2.A", "VCC"]
+
+power:
+  vcc: ["U1.VCC", "U1.AVCC"]
+  gnd: ["U1.GND"]
+
+design_rules:
+  trace_width: 0.25      # mm
+  via_size: 0.6         # mm
+  via_drill: 0.3        # mm
+  clearance: 0.2        # mm
+
+manufacturing:
+  vendor: macrofab
+  quantity: 10
+  surface_finish: HASL
+  solder_mask: green
+  silkscreen: white

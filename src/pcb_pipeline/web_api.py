@@ -12,8 +12,9 @@ import tempfile
 import shutil
 
 from fastapi import FastAPI, HTTPException, UploadFile, File, BackgroundTasks
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import uvicorn
 
@@ -84,7 +85,29 @@ def create_app(config: Optional[PipelineConfig] = None) -> FastAPI:
     # Configuration
     app_config = config or PipelineConfig()
     
-    @app.get("/")
+    # Mount static files
+    static_dir = Path(__file__).parent.parent.parent / "static"
+    if static_dir.exists():
+        app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+    
+    @app.get("/", response_class=HTMLResponse)
+    async def home():
+        """Serve the landing page."""
+        index_file = static_dir / "index.html"
+        if index_file.exists():
+            return index_file.read_text()
+        else:
+            return """
+            <html>
+            <body style="font-family: sans-serif; text-align: center; padding: 50px;">
+                <h1>PCB Automation Pipeline API</h1>
+                <p>REST API for automated PCB design and manufacturing</p>
+                <a href="/docs" style="display: inline-block; margin: 20px; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px;">API Documentation</a>
+            </body>
+            </html>
+            """
+    
+    @app.get("/api")
     async def root():
         """Root endpoint with API information."""
         return {

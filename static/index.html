@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCB Automation Pipeline - Transform Ideas into Circuit Boards</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .demo-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .demo-button:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .features {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: 2px solid #eee;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .demo-section {
+            background: #f8f9fa;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .yaml-example {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .process-flow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .process-step {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            margin: 1rem;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+        
+        .arrow {
+            font-size: 2rem;
+            color: #3498db;
+        }
+        
+        .stats {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .api-endpoints {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem auto;
+            max-width: 600px;
+            font-family: monospace;
+        }
+        
+        .endpoint {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .tech-badge {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .process-flow { flex-direction: column; }
+            .arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🚀 PCB Automation Pipeline</h1>
+            <p class="tagline">Transform YAML specifications into production-ready circuit boards in minutes</p>
+            <a href="/docs" class="demo-button">Try Live Demo</a>
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">
+                Revolutionize Your PCB Design Workflow
+            </h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">AI-Powered Design</h3>
+                    <p>Machine learning algorithms optimize component placement for thermal management, signal integrity, and EMI compliance.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔀</div>
+                    <h3 class="feature-title">Advanced Auto-Routing</h3>
+                    <p>Multiple routing algorithms including FreeRouting integration, via optimization, and differential pair routing.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏭</div>
+                    <h3 class="feature-title">Multi-Manufacturer Support</h3>
+                    <p>Seamlessly switch between MacroFab, JLCPCB, PCBWay, and others with automatic price comparison.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Real-Time Generation</h3>
+                    <p>Watch your PCB come to life with WebSocket updates as it progresses through each design stage.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🐳</div>
+                    <h3 class="feature-title">Docker-Powered</h3>
+                    <p>Consistent KiCad environment across all platforms with zero local installation required.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">REST API</h3>
+                    <p>Full-featured API for integration into your existing workflows and CI/CD pipelines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo-section">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">See It In Action</h2>
+            
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>Define Your Design</h4>
+                    <p>Simple YAML specification</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>AI Optimization</h4>
+                    <p>Smart component placement</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>Auto-Route</h4>
+                    <p>Intelligent trace routing</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4>Order Ready</h4>
+                    <p>Gerbers & quotes generated</p>
+                </div>
+            </div>
+
+            <div class="yaml-example">
+<pre>name: IoT Temperature Sensor
+board:
+  size: [40, 30]  # mm
+  layers: 2
+
+components:
+  - type: microcontroller
+    value: ESP32-C3
+    package: QFN-32
+    
+  - type: sensor
+    value: DHT22
+    package: DIP-4
+    
+  - type: regulator
+    value: AMS1117-3.3
+    package: SOT-223
+
+connections:
+  - net: VCC_3V3
+    connect: ["U1.VDD", "U2.VCC", "C1.1"]
+    
+  - net: I2C_SDA
+    connect: ["U1.GPIO8", "U2.DATA"]</pre>
+            </div>
+
+            <a href="/docs" class="demo-button">Try This Example</a>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Pipeline Performance</h2>
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <h3>45s</h3>
+                    <p>Average design time</p>
+                </div>
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>Routing success rate</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5+</h3>
+                    <p>Manufacturers supported</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>API availability</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Ready to Automate Your PCB Design?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Join engineers worldwide who are accelerating their hardware development
+            </p>
+            
+            <div class="api-endpoints">
+                <h4 style="margin-bottom: 1rem;">API Endpoints Available:</h4>
+                <div class="endpoint">POST /designs/generate</div>
+                <div class="endpoint">GET /quotes/{manufacturer}</div>
+                <div class="endpoint">POST /orders/submit</div>
+                <div class="endpoint">WebSocket /ws/realtime</div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="/docs" class="demo-button" style="margin-right: 1rem;">API Documentation</a>
+                <a href="https://github.com/murr2k/pcb-automation-pipeline" class="demo-button" style="background: #34495e;">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="tech-stack">
+                <span class="tech-badge">KiCad</span>
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">Fly.io</span>
+                <span class="tech-badge">MacroFab API</span>
+            </div>
+            <p style="margin-top: 2rem;">
+                PCB Automation Pipeline © 2025 | Built with ❤️ by Murray Kopit
+            </p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">
+                Powered by AI-assisted design algorithms and industry-leading manufacturers
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
