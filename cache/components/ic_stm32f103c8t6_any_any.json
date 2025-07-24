@@ -1,0 +1,22 @@
+{
+  "primary": {
+    "mpn": "C8734",
+    "manufacturer": "ST",
+    "description": "ARM Cortex-M3 MCU",
+    "package": "LQFP-48",
+    "supplier": "LCSC",
+    "supplier_pn": "C8734",
+    "price": null,
+    "stock": null,
+    "datasheet": null,
+    "specifications": {
+      "lcsc": "C8734",
+      "package": "LQFP-48",
+      "description": "ARM Cortex-M3 MCU",
+      "manufacturer": "ST"
+    }
+  },
+  "alternatives": [],
+  "confidence": 0.95,
+  "warnings": []
+}

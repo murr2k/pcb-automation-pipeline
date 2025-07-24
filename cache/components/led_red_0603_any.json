@@ -1,0 +1,23 @@
+{
+  "primary": {
+    "mpn": "C2286",
+    "manufacturer": "Unknown",
+    "description": "led red",
+    "package": "0603",
+    "supplier": "LCSC",
+    "supplier_pn": "C2286",
+    "price": null,
+    "stock": null,
+    "datasheet": null,
+    "specifications": {
+      "lcsc": "C2286",
+      "package": "0603",
+      "voltage": "2.0V",
+      "current": "20mA",
+      "wavelength": "620-625nm"
+    }
+  },
+  "alternatives": [],
+  "confidence": 0.95,
+  "warnings": []
+}

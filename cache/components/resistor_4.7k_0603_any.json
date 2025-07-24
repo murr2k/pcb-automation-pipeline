@@ -1,0 +1,22 @@
+{
+  "primary": {
+    "mpn": "C23162",
+    "manufacturer": "Unknown",
+    "description": "resistor 4.7k",
+    "package": "0603",
+    "supplier": "LCSC",
+    "supplier_pn": "C23162",
+    "price": null,
+    "stock": null,
+    "datasheet": null,
+    "specifications": {
+      "lcsc": "C23162",
+      "package": "0603",
+      "tolerance": "1%",
+      "power": "0.1W"
+    }
+  },
+  "alternatives": [],
+  "confidence": 0.95,
+  "warnings": []
+}

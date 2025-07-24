@@ -1,0 +1,22 @@
+{
+  "primary": {
+    "mpn": "C473893",
+    "manufacturer": "Espressif",
+    "description": "WiFi/BT Module",
+    "package": "SMD-38",
+    "supplier": "LCSC",
+    "supplier_pn": "C473893",
+    "price": null,
+    "stock": null,
+    "datasheet": null,
+    "specifications": {
+      "lcsc": "C473893",
+      "package": "SMD-38",
+      "description": "WiFi/BT Module",
+      "manufacturer": "Espressif"
+    }
+  },
+  "alternatives": [],
+  "confidence": 0.95,
+  "warnings": []
+}

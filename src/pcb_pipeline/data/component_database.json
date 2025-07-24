@@ -1,0 +1,155 @@
+{
+  "resistor": {
+    "patterns": [
+      "(?P<value>\\d+\\.?\\d*[kKmMrR]?)\\s*(?P<unit>ohm|Ω)?"
+    ],
+    "common_values": {
+      "0": {"lcsc": "C21189", "package": "0603", "tolerance": "1%", "description": "0Ω Jumper"},
+      "10": {"lcsc": "C22859", "package": "0603", "tolerance": "1%", "power": "0.1W"},
+      "100": {"lcsc": "C22775", "package": "0603", "tolerance": "1%", "power": "0.1W"},
+      "220": {"lcsc": "C22962", "package": "0603", "tolerance": "1%", "power": "0.1W"},
+      "330": {"lcsc": "C23138", "package": "0603", "tolerance": "1%", "power": "0.1W"},
+      "470": {"lcsc": "C23179", "package": "0603", "tolerance": "1%", "power": "0.1W"},
+      "1k": {"lcsc": "C21190", "package": "0603", "tolerance": "1%", "power": "0.1W"},
+      "2.2k": {"lcsc": "C4190", "package": "0603", "tolerance": "1%", "power": "0.1W"},
+      "4.7k": {"lcsc": "C23162", "package": "0603", "tolerance": "1%", "power": "0.1W"},
+      "10k": {"lcsc": "C25804", "package": "0603", "tolerance": "1%", "power": "0.1W"},
+      "22k": {"lcsc": "C31850", "package": "0603", "tolerance": "1%", "power": "0.1W"},
+      "47k": {"lcsc": "C25819", "package": "0603", "tolerance": "1%", "power": "0.1W"},
+      "100k": {"lcsc": "C25803", "package": "0603", "tolerance": "1%", "power": "0.1W"},
+      "1M": {"lcsc": "C22935", "package": "0603", "tolerance": "1%", "power": "0.1W"}
+    },
+    "attributes": ["tolerance", "power", "temperature"]
+  },
+  "capacitor": {
+    "patterns": [
+      "(?P<value>\\d+\\.?\\d*)\\s*(?P<unit>[pnuµmF]F?)"
+    ],
+    "common_values": {
+      "10pF": {"lcsc": "C32949", "package": "0603", "voltage": "50V", "tolerance": "5%"},
+      "22pF": {"lcsc": "C1653", "package": "0603", "voltage": "50V", "tolerance": "5%"},
+      "100pF": {"lcsc": "C14858", "package": "0603", "voltage": "50V", "tolerance": "5%"},
+      "1nF": {"lcsc": "C1588", "package": "0603", "voltage": "50V", "tolerance": "10%"},
+      "10nF": {"lcsc": "C57112", "package": "0603", "voltage": "50V", "tolerance": "10%"},
+      "100nF": {"lcsc": "C14663", "package": "0603", "voltage": "50V", "tolerance": "10%", "description": "0.1µF Decoupling"},
+      "1uF": {"lcsc": "C15849", "package": "0603", "voltage": "25V", "tolerance": "10%"},
+      "10uF": {"lcsc": "C19702", "package": "0805", "voltage": "16V", "tolerance": "10%"},
+      "22uF": {"lcsc": "C45783", "package": "0805", "voltage": "16V", "tolerance": "20%"},
+      "100uF": {"lcsc": "C16133", "package": "1206", "voltage": "16V", "tolerance": "20%", "type": "Electrolytic"}
+    },
+    "attributes": ["voltage", "tolerance", "temperature", "dielectric"]
+  },
+  "led": {
+    "patterns": [
+      "(?P<color>red|green|blue|yellow|white|orange|rgb)"
+    ],
+    "common_values": {
+      "red": {"lcsc": "C2286", "package": "0603", "voltage": "2.0V", "current": "20mA", "wavelength": "620-625nm"},
+      "green": {"lcsc": "C72043", "package": "0603", "voltage": "3.2V", "current": "20mA", "wavelength": "515-530nm"},
+      "blue": {"lcsc": "C72041", "package": "0603", "voltage": "3.2V", "current": "20mA", "wavelength": "465-475nm"},
+      "yellow": {"lcsc": "C72038", "package": "0603", "voltage": "2.0V", "current": "20mA", "wavelength": "585-595nm"},
+      "white": {"lcsc": "C2290", "package": "0603", "voltage": "3.0V", "current": "20mA", "color_temp": "6000K"},
+      "orange": {"lcsc": "C71821", "package": "0603", "voltage": "2.0V", "current": "20mA", "wavelength": "600-610nm"}
+    },
+    "attributes": ["color", "brightness", "voltage", "current", "wavelength"]
+  },
+  "diode": {
+    "common_parts": {
+      "1N4148": {"lcsc": "C2128", "package": "SOD-123", "type": "Switching", "voltage": "100V", "current": "300mA"},
+      "1N4007": {"lcsc": "C181126", "package": "DO-41", "type": "Rectifier", "voltage": "1000V", "current": "1A"},
+      "1N5819": {"lcsc": "C8598", "package": "DO-41", "type": "Schottky", "voltage": "40V", "current": "1A"},
+      "SS34": {"lcsc": "C8678", "package": "DO-214AC", "type": "Schottky", "voltage": "40V", "current": "3A"},
+      "BAT54": {"lcsc": "C2290", "package": "SOT-23", "type": "Schottky", "voltage": "30V", "current": "200mA"}
+    }
+  },
+  "transistor": {
+    "common_parts": {
+      "2N3904": {"lcsc": "C20526", "package": "SOT-23", "type": "NPN", "voltage": "40V", "current": "200mA"},
+      "2N3906": {"lcsc": "C20527", "package": "SOT-23", "type": "PNP", "voltage": "40V", "current": "200mA"},
+      "BC547": {"lcsc": "C713613", "package": "TO-92", "type": "NPN", "voltage": "45V", "current": "100mA"},
+      "BC557": {"lcsc": "C713614", "package": "TO-92", "type": "PNP", "voltage": "45V", "current": "100mA"},
+      "2N7002": {"lcsc": "C8545", "package": "SOT-23", "type": "N-MOSFET", "voltage": "60V", "current": "115mA"},
+      "AO3401": {"lcsc": "C15127", "package": "SOT-23", "type": "P-MOSFET", "voltage": "30V", "current": "4A"}
+    }
+  },
+  "ic": {
+    "common_parts": {
+      "555": {"lcsc": "C7593", "package": "SOIC-8", "description": "Timer IC", "manufacturer": "TI"},
+      "NE555": {"lcsc": "C7593", "package": "SOIC-8", "description": "Timer IC", "manufacturer": "TI"},
+      "LM358": {"lcsc": "C7950", "package": "SOIC-8", "description": "Dual Op-Amp", "manufacturer": "TI"},
+      "LM324": {"lcsc": "C5242", "package": "SOIC-14", "description": "Quad Op-Amp", "manufacturer": "TI"},
+      "TL072": {"lcsc": "C6961", "package": "SOIC-8", "description": "Low-Noise Dual Op-Amp", "manufacturer": "TI"},
+      "LM317": {"lcsc": "C22697", "package": "TO-220", "description": "Adjustable Voltage Regulator", "manufacturer": "TI"},
+      "7805": {"lcsc": "C2848", "package": "TO-220", "description": "5V Linear Regulator", "manufacturer": "Various"},
+      "LM7805": {"lcsc": "C2848", "package": "TO-220", "description": "5V Linear Regulator", "manufacturer": "TI"},
+      "AMS1117-3.3": {"lcsc": "C6186", "package": "SOT-223", "description": "3.3V LDO Regulator", "manufacturer": "AMS"},
+      "ATmega328P": {"lcsc": "C14877", "package": "TQFP-32", "description": "AVR Microcontroller", "manufacturer": "Microchip"},
+      "ATtiny85": {"lcsc": "C89854", "package": "SOIC-8", "description": "8-bit AVR MCU", "manufacturer": "Microchip"},
+      "STM32F103C8T6": {"lcsc": "C8734", "package": "LQFP-48", "description": "ARM Cortex-M3 MCU", "manufacturer": "ST"},
+      "ESP32-WROOM-32": {"lcsc": "C473893", "package": "SMD-38", "description": "WiFi/BT Module", "manufacturer": "Espressif"},
+      "ESP8266": {"lcsc": "C82891", "package": "SMD-16", "description": "WiFi Module", "manufacturer": "Espressif"},
+      "CH340G": {"lcsc": "C14267", "package": "SOIC-16", "description": "USB-UART Bridge", "manufacturer": "WCH"},
+      "FT232RL": {"lcsc": "C8690", "package": "SSOP-28", "description": "USB-UART Bridge", "manufacturer": "FTDI"}
+    }
+  },
+  "connector": {
+    "common_parts": {
+      "USB-C": {"lcsc": "C165948", "package": "USB-C-16P", "description": "USB Type-C Receptacle 16-pin"},
+      "USB-A": {"lcsc": "C2345", "package": "USB-A-TH", "description": "USB Type-A Receptacle Through-hole"},
+      "Micro-USB": {"lcsc": "C16354", "package": "MICRO-USB-5P", "description": "Micro USB Type-B 5-pin"},
+      "RJ45": {"lcsc": "C86580", "package": "RJ45-8P8C", "description": "Ethernet Jack 8P8C"},
+      "DC-Jack": {"lcsc": "C136744", "package": "DC-005-2.0", "description": "DC Power Jack 2.1mm"},
+      "JST-XH-2": {"lcsc": "C158012", "package": "JST-XH-2P", "description": "JST XH 2-pin 2.5mm"},
+      "JST-XH-3": {"lcsc": "C158014", "package": "JST-XH-3P", "description": "JST XH 3-pin 2.5mm"},
+      "JST-XH-4": {"lcsc": "C158016", "package": "JST-XH-4P", "description": "JST XH 4-pin 2.5mm"},
+      "Pin_Header_1x4": {"lcsc": "C124378", "package": "2.54mm-1x4P", "description": "Pin Header 1x4 2.54mm"},
+      "Pin_Header_1x8": {"lcsc": "C124390", "package": "2.54mm-1x8P", "description": "Pin Header 1x8 2.54mm"},
+      "Pin_Header_2x10": {"lcsc": "C124395", "package": "2.54mm-2x10P", "description": "Pin Header 2x10 2.54mm"},
+      "Pin_Header_2x20": {"lcsc": "C2337", "package": "2.54mm-2x20P", "description": "GPIO Header 2x20 2.54mm"}
+    }
+  },
+  "crystal": {
+    "patterns": [
+      "(?P<frequency>\\d+\\.?\\d*)\\s*(?P<unit>[kKmM]?Hz)"
+    ],
+    "common_values": {
+      "32.768kHz": {"lcsc": "C32346", "package": "3215", "tolerance": "20ppm", "load_cap": "12.5pF"},
+      "8MHz": {"lcsc": "C16213", "package": "HC-49S", "tolerance": "30ppm", "load_cap": "20pF"},
+      "12MHz": {"lcsc": "C9002", "package": "HC-49S", "tolerance": "30ppm", "load_cap": "20pF"},
+      "16MHz": {"lcsc": "C16212", "package": "HC-49S", "tolerance": "30ppm", "load_cap": "20pF"},
+      "20MHz": {"lcsc": "C16216", "package": "HC-49S", "tolerance": "30ppm", "load_cap": "20pF"},
+      "25MHz": {"lcsc": "C16214", "package": "HC-49S", "tolerance": "30ppm", "load_cap": "20pF"}
+    },
+    "attributes": ["frequency", "tolerance", "load_capacitance"]
+  },
+  "inductor": {
+    "patterns": [
+      "(?P<value>\\d+\\.?\\d*)\\s*(?P<unit>[munµ]H)"
+    ],
+    "common_values": {
+      "1uH": {"lcsc": "C1890", "package": "0603", "tolerance": "20%", "current": "300mA"},
+      "4.7uH": {"lcsc": "C1891", "package": "0603", "tolerance": "20%", "current": "250mA"},
+      "10uH": {"lcsc": "C25199", "package": "0805", "tolerance": "20%", "current": "400mA"},
+      "22uH": {"lcsc": "C25200", "package": "0805", "tolerance": "20%", "current": "300mA"},
+      "100uH": {"lcsc": "C19704", "package": "1210", "tolerance": "20%", "current": "150mA"}
+    },
+    "attributes": ["inductance", "tolerance", "current_rating", "dcr"]
+  },
+  "switch": {
+    "common_parts": {
+      "Tactile_6x6": {"lcsc": "C136682", "package": "6x6x5mm", "description": "Tactile Switch 6x6mm"},
+      "Tactile_12x12": {"lcsc": "C318884", "package": "12x12x7.3mm", "description": "Tactile Switch 12x12mm"},
+      "SPDT_Slide": {"lcsc": "C431541", "package": "SS-12D00", "description": "SPDT Slide Switch"},
+      "DIP_Switch_4": {"lcsc": "C40735", "package": "DIP-8", "description": "4-position DIP Switch"}
+    }
+  },
+  "fuse": {
+    "common_parts": {
+      "500mA": {"lcsc": "C369153", "package": "1206", "voltage": "32V", "type": "Fast-Acting"},
+      "1A": {"lcsc": "C369154", "package": "1206", "voltage": "32V", "type": "Fast-Acting"},
+      "2A": {"lcsc": "C369156", "package": "1206", "voltage": "32V", "type": "Fast-Acting"},
+      "PTC_100mA": {"lcsc": "C13522", "package": "1206", "voltage": "16V", "type": "Resettable"},
+      "PTC_500mA": {"lcsc": "C13525", "package": "1206", "voltage": "16V", "type": "Resettable"}
+    }
+  }
+}

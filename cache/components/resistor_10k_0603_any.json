@@ -1,0 +1,22 @@
+{
+  "primary": {
+    "mpn": "C25804",
+    "manufacturer": "Unknown",
+    "description": "resistor 10k",
+    "package": "0603",
+    "supplier": "LCSC",
+    "supplier_pn": "C25804",
+    "price": null,
+    "stock": null,
+    "datasheet": null,
+    "specifications": {
+      "lcsc": "C25804",
+      "package": "0603",
+      "tolerance": "1%",
+      "power": "0.1W"
+    }
+  },
+  "alternatives": [],
+  "confidence": 0.95,
+  "warnings": []
+}

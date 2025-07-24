@@ -1,0 +1,22 @@
+{
+  "primary": {
+    "mpn": "C1653",
+    "manufacturer": "Unknown",
+    "description": "capacitor 22pF",
+    "package": "0603",
+    "supplier": "LCSC",
+    "supplier_pn": "C1653",
+    "price": null,
+    "stock": null,
+    "datasheet": null,
+    "specifications": {
+      "lcsc": "C1653",
+      "package": "0603",
+      "voltage": "50V",
+      "tolerance": "5%"
+    }
+  },
+  "alternatives": [],
+  "confidence": 0.95,
+  "warnings": []
+}

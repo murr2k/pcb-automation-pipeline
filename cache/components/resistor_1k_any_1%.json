@@ -1,0 +1,22 @@
+{
+  "primary": {
+    "mpn": "C21190",
+    "manufacturer": "Unknown",
+    "description": "resistor 1k",
+    "package": "0603",
+    "supplier": "LCSC",
+    "supplier_pn": "C21190",
+    "price": null,
+    "stock": null,
+    "datasheet": null,
+    "specifications": {
+      "lcsc": "C21190",
+      "package": "0603",
+      "tolerance": "1%",
+      "power": "0.1W"
+    }
+  },
+  "alternatives": [],
+  "confidence": 0.95,
+  "warnings": []
+}

@@ -1,0 +1,22 @@
+{
+  "primary": {
+    "mpn": "C7593",
+    "manufacturer": "TI",
+    "description": "Timer IC",
+    "package": "SOIC-8",
+    "supplier": "LCSC",
+    "supplier_pn": "C7593",
+    "price": null,
+    "stock": null,
+    "datasheet": null,
+    "specifications": {
+      "lcsc": "C7593",
+      "package": "SOIC-8",
+      "description": "Timer IC",
+      "manufacturer": "TI"
+    }
+  },
+  "alternatives": [],
+  "confidence": 0.95,
+  "warnings": []
+}

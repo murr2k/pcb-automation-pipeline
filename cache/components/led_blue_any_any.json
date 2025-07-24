@@ -1,0 +1,23 @@
+{
+  "primary": {
+    "mpn": "C72041",
+    "manufacturer": "Unknown",
+    "description": "led blue",
+    "package": "0603",
+    "supplier": "LCSC",
+    "supplier_pn": "C72041",
+    "price": null,
+    "stock": null,
+    "datasheet": null,
+    "specifications": {
+      "lcsc": "C72041",
+      "package": "0603",
+      "voltage": "3.2V",
+      "current": "20mA",
+      "wavelength": "465-475nm"
+    }
+  },
+  "alternatives": [],
+  "confidence": 0.95,
+  "warnings": []
+}

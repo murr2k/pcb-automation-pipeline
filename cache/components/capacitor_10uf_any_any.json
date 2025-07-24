@@ -1,0 +1,22 @@
+{
+  "primary": {
+    "mpn": "C19702",
+    "manufacturer": "Unknown",
+    "description": "capacitor 10uF",
+    "package": "0805",
+    "supplier": "LCSC",
+    "supplier_pn": "C19702",
+    "price": null,
+    "stock": null,
+    "datasheet": null,
+    "specifications": {
+      "lcsc": "C19702",
+      "package": "0805",
+      "voltage": "16V",
+      "tolerance": "10%"
+    }
+  },
+  "alternatives": [],
+  "confidence": 0.95,
+  "warnings": []
+}

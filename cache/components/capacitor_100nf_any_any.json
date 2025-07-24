@@ -1,0 +1,23 @@
+{
+  "primary": {
+    "mpn": "C14663",
+    "manufacturer": "Unknown",
+    "description": "0.1\u00b5F Decoupling",
+    "package": "0603",
+    "supplier": "LCSC",
+    "supplier_pn": "C14663",
+    "price": null,
+    "stock": null,
+    "datasheet": null,
+    "specifications": {
+      "lcsc": "C14663",
+      "package": "0603",
+      "voltage": "50V",
+      "tolerance": "10%",
+      "description": "0.1\u00b5F Decoupling"
+    }
+  },
+  "alternatives": [],
+  "confidence": 0.95,
+  "warnings": []
+}

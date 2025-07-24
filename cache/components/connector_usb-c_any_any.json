@@ -1,0 +1,21 @@
+{
+  "primary": {
+    "mpn": "C165948",
+    "manufacturer": "Unknown",
+    "description": "USB Type-C Receptacle 16-pin",
+    "package": "USB-C-16P",
+    "supplier": "LCSC",
+    "supplier_pn": "C165948",
+    "price": null,
+    "stock": null,
+    "datasheet": null,
+    "specifications": {
+      "lcsc": "C165948",
+      "package": "USB-C-16P",
+      "description": "USB Type-C Receptacle 16-pin"
+    }
+  },
+  "alternatives": [],
+  "confidence": 0.95,
+  "warnings": []
+}
