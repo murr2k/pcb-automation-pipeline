@@ -45,7 +45,7 @@ Once deployed, visitors will see:
 # Run local demo server
 python demo_server.py
 
-# Open http://localhost:8080
+# Open http://localhost:8765
 ```
 
 ## 📊 Pipeline Capabilities Demonstrated

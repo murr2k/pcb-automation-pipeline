@@ -128,7 +128,7 @@ class DemoHandler(SimpleHTTPRequestHandler):
 
 def main():
     """Run the demo server."""
-    PORT = 8080
+    PORT = 8765
     print(f"🚀 PCB Pipeline Demo Server")
     print(f"📍 Open http://localhost:{PORT} in your browser")
     print(f"📊 While Fly.io deployment completes, test the pipeline locally!")
