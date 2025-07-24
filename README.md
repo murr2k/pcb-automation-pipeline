@@ -71,6 +71,8 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
+> **Note**: The pipeline works great without any API keys! For PCB ordering and advanced features, see the [API Keys Guide](docs/API_KEYS.md).
+
 ### 2. Basic Usage
 
 ```python
@@ -356,12 +358,25 @@ export PCB_LOG_LEVEL="INFO"
 
 ## 📚 Documentation
 
-Comprehensive documentation available:
+### 📖 Core Documentation
+- **[Setup Guide](docs/SETUP.md)** - Installation and configuration
+- **[Pipeline Guide](docs/PIPELINE_GUIDE.md)** - Usage and workflow  
+- **[API Reference](docs/API.md)** - Complete API documentation
 
-- 📖 **[Setup Guide](docs/SETUP.md)** - Installation and configuration
-- 🚀 **[Pipeline Guide](docs/PIPELINE_GUIDE.md)** - Usage and workflow  
-- 🔧 **[API Reference](docs/API.md)** - Complete API documentation
-- 💡 **[Examples](examples/)** - Sample projects and tutorials
+### 🔧 Configuration & Integration
+- **[API Keys Guide](docs/API_KEYS.md)** - External services and API registration
+- **[Configuration Guide](configs/pipeline_config.yaml)** - Pipeline configuration options
+
+### 💡 Tutorials & Examples
+- **[Simple LED Board](examples/simple_led_board/)** - Basic example project
+- **[CI/CD Pipeline Script](scripts/ci_pipeline.py)** - Automation examples
+
+### 🏗️ Architecture & Development
+- **[Web API Documentation](src/pcb_pipeline/web_api.py)** - REST API implementation
+- **[GitHub Actions Workflow](.github/workflows/pcb-pipeline.yml)** - CI/CD configuration
+
+### 📋 Quick Links
+- [Getting Started](#-quick-start) | [Features](#-key-features) | [API Keys](docs/API_KEYS.md) | [Contributing](#-contributing)
 
 ## 🧪 Testing
 
