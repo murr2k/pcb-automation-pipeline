@@ -366,6 +366,7 @@ export PCB_LOG_LEVEL="INFO"
 - **[Setup Guide](docs/SETUP.md)** - Installation and configuration
 - **[Pipeline Guide](docs/PIPELINE_GUIDE.md)** - Usage and workflow  
 - **[API Reference](docs/API.md)** - Complete API documentation
+- **[Docker Guide](docs/DOCKER.md)** - Docker integration and containerization
 
 ### 🔧 Configuration & Integration
 - **[API Keys Guide](docs/API_KEYS.md)** - External services and API registration

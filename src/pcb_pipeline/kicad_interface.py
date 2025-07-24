@@ -16,7 +16,7 @@ class KiCadInterface:
     def __init__(self, config: PipelineConfig):
         self.config = config
         self.kicad_path = config.kicad_path
-        self.use_docker = config.use_docker
+        self.use_docker = os.environ.get('PCB_USE_DOCKER', 'false').lower() == 'true'
         self.pcbnew = None
         self.eeschema = None
         
@@ -333,7 +333,7 @@ class KiCadInterface:
             'docker', 'run', '--rm',
             '-v', f'{Path(board_file).parent}:/work',
             '-v', f'{output_dir}:/output',
-            self.config.get('docker_image', 'kicad/kicad:latest'),
+            self.config.get('docker_image', 'kicad/kicad:nightly-full-trixie'),
             'kicad-cli', 'pcb', 'export', 'gerbers',
             '--output', '/output',
             f'/work/{Path(board_file).name}'

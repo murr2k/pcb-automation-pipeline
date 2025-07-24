@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  pcb-pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pcb-automation-pipeline:latest
+    container_name: pcb-automation
+    volumes:
+      # Mount design specifications
+      - ./designs:/workspace/designs:ro
+      # Mount output directory
+      - ./output:/output:rw
+      # Mount examples
+      - ./examples:/workspace/examples:ro
+      # Mount configuration
+      - ./configs:/app/configs:ro
+      # Optional: Mount local component libraries
+      - ./libraries:/workspace/libraries:ro
+    environment:
+      # Pipeline configuration
+      - PCB_OUTPUT_DIR=/output
+      - PCB_LOG_LEVEL=INFO
+      - PCB_USE_DOCKER=true
+      
+      # API Keys (set these in .env file)
+      - PCB_JLCPCB_API_KEY=${PCB_JLCPCB_API_KEY}
+      - PCB_JLCPCB_API_SECRET=${PCB_JLCPCB_API_SECRET}
+      - PCB_MACROFAB_API_KEY=${PCB_MACROFAB_API_KEY}
+      - PCB_OCTOPART_API_KEY=${PCB_OCTOPART_API_KEY}
+      
+      # Display settings for GUI tools
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+    network_mode: host
+    stdin_open: true
+    tty: true
+    command: python3 scripts/run_pipeline.py
+
+  # Optional: Web API service
+  pcb-web-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pcb-automation-pipeline:latest
+    container_name: pcb-web-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./designs:/workspace/designs:ro
+      - ./output:/output:rw
+      - ./configs:/app/configs:ro
+    environment:
+      - PCB_OUTPUT_DIR=/output
+      - PCB_LOG_LEVEL=INFO
+      - PCB_USE_DOCKER=true
+      # API Keys from .env
+      - PCB_JLCPCB_API_KEY=${PCB_JLCPCB_API_KEY}
+      - PCB_JLCPCB_API_SECRET=${PCB_JLCPCB_API_SECRET}
+      - PCB_MACROFAB_API_KEY=${PCB_MACROFAB_API_KEY}
+      - PCB_OCTOPART_API_KEY=${PCB_OCTOPART_API_KEY}
+    command: python3 -m pcb_pipeline.web_api
+
+  # Optional: Jupyter notebook for interactive development
+  pcb-notebook:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pcb-automation-pipeline:latest
+    container_name: pcb-notebook
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/workspace/notebooks:rw
+      - ./designs:/workspace/designs:ro
+      - ./output:/output:rw
+      - ./src:/app/src:ro
+    environment:
+      - PCB_OUTPUT_DIR=/output
+      - PYTHONPATH=/app/src:/usr/lib/kicad/lib/python3/dist-packages:$PYTHONPATH
+    command: jupyter notebook --ip=0.0.0.0 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+
+# Networks
+networks:
+  default:
+    name: pcb-automation-network
