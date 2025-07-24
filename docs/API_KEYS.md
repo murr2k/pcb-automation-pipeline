@@ -7,6 +7,7 @@ This guide covers all external services and API keys required to unlock the full
 | Service | Required For | Free Tier | Documentation |
 |---------|-------------|-----------|---------------|
 | **JLCPCB API** | PCB Ordering | ❌ Apply Required | [Details](#jlcpcb-api) |
+| **MacroFab API** | PCB Ordering | ✅ Full API Access | [Details](#macrofab-api) |
 | **PCBWay API** | PCB Ordering | ❌ Business Only | [Details](#pcbway-api) |
 | **OSH Park** | PCB Ordering | ❌ No API | [Details](#osh-park) |
 | **Seeed Studio** | PCB Ordering | ❌ Business Only | [Details](#seeed-studio-api) |
@@ -69,6 +70,46 @@ PCB_PCBWAY_API_SECRET="custom-integration-secret"
 **Cost**: Negotiated based on volume
 
 **Status**: Limited availability, not publicly documented
+
+### MacroFab API
+
+**Purpose**: Full-service PCB manufacturing, assembly, inventory, and fulfillment
+
+**Registration Process**:
+1. Sign up at [MacroFab Platform](https://platform.macrofab.com)
+2. API key provided upon account creation
+3. Full documentation at https://api.macrofab.com/api/v3/docs
+
+**API Keys Required**:
+```bash
+PCB_MACROFAB_API_KEY="your-api-key"
+```
+
+**Requirements**:
+- Valid MacroFab account
+- No minimum order requirements
+- Instant API access
+
+**Cost**: 
+- Free API access
+- Pay only for manufacturing
+- No setup fees for standard orders
+
+**Features**:
+- Full REST API with comprehensive documentation
+- Real-time quotes and order tracking
+- Inventory management
+- Product fulfillment services
+- File upload and validation
+- Component sourcing
+
+**API Endpoints**:
+- `POST /api/v3/pcbs` - Create PCB projects
+- `POST /api/v3/quotes` - Get instant quotes
+- `POST /api/v3/placements` - Submit orders
+- `GET /api/v3/placements/{id}` - Track orders
+- `POST /api/v3/files` - Upload manufacturing files
+- `GET /api/v3/inventory` - Manage inventory
 
 ### OSH Park
 
@@ -249,6 +290,7 @@ Create a `.env` file in project root:
 # PCB Manufacturers
 PCB_JLCPCB_API_KEY="your-key"
 PCB_JLCPCB_API_SECRET="your-secret"
+PCB_MACROFAB_API_KEY="your-key"  # Full API access available
 
 # Component Data
 PCB_OCTOPART_API_KEY="your-key"
@@ -269,6 +311,7 @@ Update `configs/production_config.yaml`:
 # API Keys (DO NOT COMMIT!)
 jlcpcb_api_key: "your-key"
 jlcpcb_api_secret: "your-secret"
+macrofab_api_key: "your-key"  # Recommended: Full API access
 octopart_api_key: "your-key"
 
 # Cloud Configuration

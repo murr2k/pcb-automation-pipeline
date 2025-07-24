@@ -333,6 +333,13 @@ class FabricationManager:
         self.register_interface('pcbway', PCBWayFabInterface)
         self.register_interface('oshpark', OSHParkFabInterface)
         self.register_interface('seeedstudio', SeeedStudioFabInterface)
+        
+        # Import and register MacroFab if available
+        try:
+            from .macrofab_interface import MacroFabInterface
+            self.register_interface('macrofab', MacroFabInterface)
+        except ImportError:
+            pass
     
     def register_interface(self, name: str, interface_class):
         """Register a fabrication interface."""

@@ -15,9 +15,10 @@ A comprehensive, AI-powered PCB design automation system that transforms high-le
 - **Continuous Learning**: System improves from each successful design iteration
 
 ### 🏭 **Multi-Manufacturer Support**
-- **Universal Interface**: Seamlessly switch between 4+ PCB manufacturers
+- **Universal Interface**: Seamlessly switch between 5+ PCB manufacturers
 - **Intelligent Comparison**: Automatic price, lead time, and capability comparison
 - **Supported Manufacturers**:
+  - 🇺🇸 **MacroFab**: Full API access, US-based manufacturing with inventory management
   - 🇨🇳 **JLCPCB**: Industry-standard with assembly services
   - 🇨🇳 **PCBWay**: High-end capabilities up to 32 layers
   - 🇺🇸 **OSH Park**: Premium ENIG finish, made in USA
@@ -181,13 +182,16 @@ best_for_production = fab_manager.find_best_option(pcb, criteria='price', quanti
 
 **Manufacturer Comparison:**
 
-| Feature | JLCPCB | PCBWay | OSH Park | Seeed Studio |
-|---------|--------|---------|----------|--------------|
-| **Max Layers** | 10 | 32 | 4 | 6 |
-| **Min Trace** | 0.127mm | 0.075mm | 0.152mm | 0.127mm |
-| **Lead Time** | 2-3 days | 5-7 days | 12 days | 3-5 days |
-| **Assembly** | ✅ | ✅ | ❌ | ✅ |
-| **Specialty** | Cost-effective | High-end | Premium finish | Fast turnaround |
+| Feature | MacroFab | JLCPCB | PCBWay | OSH Park | Seeed Studio |
+|---------|----------|--------|---------|----------|--------------|
+| **API Access** | ✅ Full | ⚠️ Apply | ❌ Business | ❌ None | ❌ Business |
+| **Max Layers** | 20 | 10 | 32 | 4 | 6 |
+| **Min Trace** | 0.127mm | 0.127mm | 0.075mm | 0.152mm | 0.127mm |
+| **Lead Time** | 5-15 days | 2-3 days | 5-7 days | 12 days | 3-5 days |
+| **Assembly** | ✅ | ✅ | ✅ | ❌ | ✅ |
+| **Inventory** | ✅ | ❌ | ❌ | ❌ | ❌ |
+| **Location** | 🇺🇸 USA | 🇨🇳 China | 🇨🇳 China | 🇺🇸 USA | 🇨🇳 China |
+| **Specialty** | Full API, Inventory | Cost-effective | High-end | Premium finish | Fast turnaround |
 
 ## 🌐 Web API Interface
 
