@@ -6,6 +6,12 @@ click>=8.1.0
 jsonschema>=4.0.0
 Pillow>=10.0.0
 
+# Web API dependencies
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.5.0
+python-multipart>=0.0.9
+
 # KiCad integration
 # Note: pcbnew module comes with KiCad installation
 # For cross-version compatibility:

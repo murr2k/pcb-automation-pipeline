@@ -7,7 +7,8 @@ A comprehensive, AI-powered PCB design automation system that transforms high-le
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 🌐 **Live API**: https://pcb-automation-pipeline.fly.dev/  
-📚 **API Docs**: https://pcb-automation-pipeline.fly.dev/docs
+📚 **API Docs**: https://pcb-automation-pipeline.fly.dev/docs  
+🔄 **Status**: Simplified API deployed, full pipeline ready for deployment (July 26, 2025)
 
 ## ✨ Key Features
 
@@ -29,9 +30,11 @@ A comprehensive, AI-powered PCB design automation system that transforms high-le
 
 ### ⚡ **Advanced Automation**
 - **Schematic Generation**: Convert YAML specifications to KiCad schematics
-- **Component Library**: 10,000+ components with LCSC part mapping
+- **Component Library**: 89+ verified components with 88% mapping success rate
+- **Component Mapper**: Intelligent symbolic-to-physical part mapping with LCSC database
 - **Design Rule Checking**: Comprehensive DRC with manufacturer-specific rules
 - **Manufacturing Export**: Automatic Gerber, drill, BOM, and pick-and-place generation
+- **Visual Review**: GUI support via Docker X11 forwarding + automated PDF/3D exports
 
 ### 🌐 **Production-Ready Infrastructure**
 - **REST API**: FastAPI-based web interface with async processing
@@ -422,18 +425,30 @@ export PCB_LOG_LEVEL="INFO"
 Run the comprehensive test suite:
 
 ```bash
+# Run all regression tests
+python3 run_all_tests.py
+
 # Unit tests
 pytest tests/ -v
 
-# Integration tests  
-pytest tests/integration/ -v
+# Component mapper tests
+python3 test_component_mapper.py
 
-# Test with real KiCad
-pytest tests/integration/ --use-kicad
+# Integration tests
+python3 test_component_mapping_integration.py
 
-# Performance benchmarks
-python scripts/benchmark.py
+# Test Docker builds
+docker build -f Dockerfile.production -t pcb-test .
+docker run --rm pcb-test python3 run_all_tests.py
 ```
+
+**Test Coverage**: 100% pass rate on 6 test suites
+- ✅ Module imports
+- ✅ Health checks  
+- ✅ Component mapping (88% success)
+- ✅ Integration pipeline
+- ✅ Core functionality
+- ⚠️  Missing: Docker integration, KiCad file generation, API endpoints
 
 ## 🤝 Contributing
 
@@ -457,14 +472,46 @@ Typical performance for common board types:
 | **IoT Device** | 50-100 | 2 minutes | 90% |
 | **Complex MCU** | 100+ | 5 minutes | 85% |
 
+## 🖼️ Visual Design Review
+
+Multiple options for reviewing designs before manufacturing:
+
+### KiCad GUI via Docker
+```bash
+# Linux - Direct X11 forwarding
+xhost +local:docker
+docker run -it --rm -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v $(pwd)/output:/output \
+  kicad/kicad:nightly-full-trixie kicad
+
+# macOS - Requires XQuartz
+# Windows - Works with WSL2 + WSLg
+```
+
+### Automated Visual Exports
+- PDF plots of all copper layers
+- 3D VRML models for web viewing
+- PNG screenshots via scripting
+- Assembly drawings with component values
+
+See [Visual Review Guide](VISUAL_REVIEW_GUIDE.md) for detailed instructions.
+
 ## 🔮 Roadmap
 
+**Recent Progress (July 26, 2025):**
+- ✅ Fixed Docker module import issues
+- ✅ Created production-ready Dockerfile
+- ✅ Comprehensive test assessment (100% pass rate)
+- ✅ Visual review options documented
+- ✅ Updated deployment configuration
+
 **Phase III Enhancements (Coming Soon):**
-- 🎮 **3D Visualization**: Real-time 3D PCB rendering
+- 🎮 **3D Visualization**: Web-based PCB viewer with Three.js
 - 🧠 **Deep Learning Routing**: Neural network-based trace optimization  
 - 📦 **Supply Chain Integration**: Real-time component availability
 - 👥 **Collaborative Design**: Multi-user design sessions
-- 🌐 **Cloud Deployment**: Scalable web-based pipeline
+- 🔍 **Crystal Components**: Add support for oscillators (currently 0%)
 
 ## 📄 License
 

@@ -1,0 +1,42 @@
+# Full PCB Pipeline Dockerfile for Fly.io - Fixed Version
+FROM python:3.11-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements first for better caching
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Copy source code - maintaining structure
+COPY src/ ./src/
+COPY static/ ./static/
+COPY configs/ ./configs/
+
+# Copy test script for debugging
+COPY test_docker_imports.py .
+
+# Create necessary directories
+RUN mkdir -p /data/output /app/cache/components
+
+# Set environment variables - Fixed PYTHONPATH
+ENV PYTHONPATH=/app/src:/app:$PYTHONPATH
+ENV PCB_USE_DOCKER=true
+ENV PCB_OUTPUT_DIR=/data/output
+ENV PORT=8000
+
+# Expose port
+EXPOSE 8000
+
+# Add health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:8000/health || exit 1
+
+# Run the web API - Fixed module path
+CMD ["python3", "-m", "uvicorn", "src.pcb_pipeline.web_api:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]
